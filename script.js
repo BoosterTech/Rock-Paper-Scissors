@@ -2,14 +2,18 @@
     let rockButton = document.querySelector(".js-rockButton");
     let paperButton = document.querySelector(".js-paperButton");
     let scissorButton = document.querySelector(".js-scissorButton");
-
     let resultElement = document.querySelector(".js-resultElement");
+
+    let userWins = 0;
+    let computerWins = 0;
 
     const printResult = (userPickParameter, computerPickParameter, resultParameter) => {
         resultElement.innerHTML =
             `You picked: ${userPickParameter}<br>
              Computer picked: ${computerPickParameter}<br><br>
-             ${resultParameter.toUpperCase()}`;
+             ${resultParameter.toUpperCase()}<br><br>
+             Score: 
+             You: ${userWins} Computer:${computerWins}`;
     }
 
     const generateComputerChoice = () => {
@@ -33,6 +37,10 @@
             if (userChoiceParameter === "paper") (computerChoice === "rock") ? resultText = "You win!" : resultText = "You lost!";
             if (userChoiceParameter === "scissor") (computerChoice === "paper") ? resultText = "You win!" : resultText = "You lost!";
         }
+        if (resultText !== "Draw! Try again") {
+            if (resultText === 'You win!') userWins += 1
+            else computerWins += 1;
+        }
 
         printResult(userChoiceParameter, computerChoice, resultText);
     }
@@ -45,6 +53,7 @@
     }
 
     const init = () => {
+
         userButtonClick();
     }
 
