@@ -1,0 +1,35 @@
+html {
+    box-sizing: border-box;
+}
+
+*,
+::after,
+::before {
+    box-sizing: inherit;
+}
+
+body{
+    text-align: center;
+}
+
+.gameContainer {
+    padding-top: 5px;
+    border: 1px solid black;
+    border-radius: 25px;
+    max-width: 50%;
+    margin: auto;
+}
+
+.buttonsContainer {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+    gap: 20px;
+    justify-content: center;
+    padding: 15px
+}
+
+.gameContainer__title {
+    padding: 0;
+    margin: 0;
+}
+
