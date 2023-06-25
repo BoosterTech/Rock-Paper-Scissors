@@ -13,7 +13,8 @@ body{
 }
 
 .gameContainer {
-    padding-top: 5px;
+    padding-top: 15px;
+    padding-bottom: 15px;
     border: 1px solid black;
     border-radius: 25px;
     max-width: 50%;
@@ -33,3 +34,11 @@ body{
     margin: 0;
 }
 
+.scoreHeader{
+    font-weight: bolder;
+}
+
+.winLostParagraph{
+    font-weight: bolder;
+    font-size: 25px;
+}

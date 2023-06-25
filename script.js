@@ -9,11 +9,12 @@
 
     const printResult = (userPickParameter, computerPickParameter, resultParameter) => {
         resultElement.innerHTML =
-            `You picked: ${userPickParameter}<br>
-             Computer picked: ${computerPickParameter}<br><br>
-             ${resultParameter.toUpperCase()}<br><br>
-             Score: 
-             You: ${userWins} Computer:${computerWins}`;
+            `<p>You picked: ${userPickParameter}</p>
+             Computer picked: ${computerPickParameter}
+             <p class="winLostParagraph">${resultParameter.toUpperCase()}<p>
+             <p class="scoreHeader">Score:</p> 
+             You: ${userWins} 
+             <p>Computer:${computerWins}</p>`;
     }
 
     const generateComputerChoice = () => {
@@ -31,13 +32,13 @@
         let resultText = "";
         const computerChoice = generateComputerChoice();
 
-        if (userChoiceParameter === computerChoice) resultText = "Draw! Try again"
+        if (userChoiceParameter === computerChoice) resultText = "Draw!"
         else {
             if (userChoiceParameter === "rock") (computerChoice === "paper") ? resultText = "You lost!" : resultText = "You win!";
             if (userChoiceParameter === "paper") (computerChoice === "rock") ? resultText = "You win!" : resultText = "You lost!";
             if (userChoiceParameter === "scissor") (computerChoice === "paper") ? resultText = "You win!" : resultText = "You lost!";
         }
-        if (resultText !== "Draw! Try again") {
+        if (resultText !== "Draw!") {
             if (resultText === 'You win!') userWins += 1
             else computerWins += 1;
         }
