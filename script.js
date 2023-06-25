@@ -3,6 +3,7 @@
     let paperButton = document.querySelector(".js-paperButton");
     let scissorButton = document.querySelector(".js-scissorButton");
     let resultElement = document.querySelector(".js-resultElement");
+    let resetButton = document.querySelector(".js-scoreResetBtn");
 
     let userWins = 0;
     let computerWins = 0;
@@ -46,15 +47,21 @@
         printResult(userChoiceParameter, computerChoice, resultText);
     }
 
+    const setReset = () => {
+        userWins = 0;
+        computerWins = 0;
+        printResult('...', '...', '');
+    }
+
     const userButtonClick = () => {
 
-        rockButton.addEventListener("click", () => { playGame("rock") });
-        paperButton.addEventListener("click", () => { playGame("paper") });
-        scissorButton.addEventListener("click", () => { playGame("scissor") });
+        rockButton.addEventListener("click", () => playGame("rock"));
+        paperButton.addEventListener("click", () => playGame("paper"));
+        scissorButton.addEventListener("click", () => playGame("scissor"));
+        resetButton.addEventListener("click", () => setReset());
     }
 
     const init = () => {
-
         userButtonClick();
     }
 
