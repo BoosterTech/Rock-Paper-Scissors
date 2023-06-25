@@ -5,17 +5,24 @@
     let resultElement = document.querySelector(".js-resultElement");
     let resetButton = document.querySelector(".js-scoreResetBtn");
 
-    let userWins = 0;
-    let computerWins = 0;
+    let score = JSON.parse(localStorage.getItem('localStorageScore')) ||
+    {
+        userWins: 0,
+        computerWins: 0
+    }
 
-    const printResult = (userPickParameter, computerPickParameter, resultParameter) => {
+    const saveLocalStorage = () => {
+        localStorage.setItem('localStorageScore', JSON.stringify(score));
+    }
+
+    const printResult = (userPickParameter = '...', computerPickParameter = '...', resultParameter = 'Have a Pick!') => {
         resultElement.innerHTML =
             `<p>You picked: ${userPickParameter}</p>
              Computer picked: ${computerPickParameter}
              <p class="winLostParagraph">${resultParameter.toUpperCase()}<p>
              <p class="scoreHeader">Score:</p> 
-             You: ${userWins} 
-             <p>Computer:${computerWins}</p>`;
+             You: ${score.userWins} 
+             <p>Computer: ${score.computerWins}</p>`;
     }
 
     const generateComputerChoice = () => {
@@ -40,17 +47,20 @@
             if (userChoiceParameter === "scissor") (computerChoice === "paper") ? resultText = "You win!" : resultText = "You lost!";
         }
         if (resultText !== "Draw!") {
-            if (resultText === 'You win!') userWins += 1
-            else computerWins += 1;
+            if (resultText === 'You win!') score.userWins += 1
+            else score.computerWins += 1;
         }
+
+        saveLocalStorage();
 
         printResult(userChoiceParameter, computerChoice, resultText);
     }
 
     const setReset = () => {
-        userWins = 0;
-        computerWins = 0;
-        printResult('...', '...', '');
+        score.userWins = 0;
+        score.computerWins = 0;
+        printResult('...', '...');
+        localStorage.removeItem('localStorageScore');
     }
 
     const userButtonClick = () => {
@@ -62,6 +72,7 @@
     }
 
     const init = () => {
+        printResult();
         userButtonClick();
     }
 
