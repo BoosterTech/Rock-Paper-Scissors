@@ -31,7 +31,7 @@
 
         if (randomNumber >= 0 && randomNumber <= 0.33) computerChoice = "rock"
         else if (randomNumber > 0.33 && randomNumber <= 0.66) computerChoice = "paper";
-        else if (randomNumber > 0.66 && randomNumber <= 1) computerChoice = "scissor";
+        else if (randomNumber > 0.66 && randomNumber <= 1) computerChoice = "scissors";
 
         return computerChoice;
     }
@@ -44,7 +44,7 @@
         else {
             if (userChoiceParameter === "rock") (computerChoice === "paper") ? resultText = "You lost!" : resultText = "You win!";
             if (userChoiceParameter === "paper") (computerChoice === "rock") ? resultText = "You win!" : resultText = "You lost!";
-            if (userChoiceParameter === "scissor") (computerChoice === "paper") ? resultText = "You win!" : resultText = "You lost!";
+            if (userChoiceParameter === "scissors") (computerChoice === "paper") ? resultText = "You win!" : resultText = "You lost!";
         }
         if (resultText !== "Draw!") {
             if (resultText === 'You win!') score.userWins += 1
@@ -67,7 +67,7 @@
 
         rockButton.addEventListener("click", () => playGame("rock"));
         paperButton.addEventListener("click", () => playGame("paper"));
-        scissorButton.addEventListener("click", () => playGame("scissor"));
+        scissorButton.addEventListener("click", () => playGame("scissors"));
         resetButton.addEventListener("click", () => setReset());
     }
 

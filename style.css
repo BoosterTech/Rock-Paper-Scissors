@@ -8,17 +8,26 @@ html {
     box-sizing: inherit;
 }
 
-body{
+body {
     text-align: center;
+    background-color: rgb(25, 25, 25);
+    color: white;
+    font-family: Arial;
 }
 
 .gameContainer {
     padding-top: 15px;
     padding-bottom: 15px;
-    border: 1px solid black;
-    border-radius: 25px;
+    /* border: 1px solid rgb(230, 221, 221);
+    border-radius: 25px; */
     max-width: 50%;
     margin: auto;
+}
+
+.gameContainer__title {
+    padding-bottom: 20px;
+    margin: 0;
+    font-size: 25px;
 }
 
 .buttonsContainer {
@@ -26,19 +35,27 @@ body{
     grid-template-columns: 100px 100px 100px;
     gap: 20px;
     justify-content: center;
-    padding: 15px
+    padding: 15px;
 }
 
-.gameContainer__title {
-    padding: 0;
-    margin: 0;
+.gameContainer__button {
+    background-color: transparent;
+    border-radius: 50%;
+    padding: 10px;
+    height: 100px;
+    width: 100px;
+    cursor: pointer;
 }
 
-.scoreHeader{
+.buttonImage {
+    height: 50px;
+}
+
+.scoreHeader {
     font-weight: bolder;
 }
 
-.winLostParagraph{
+.winLostParagraph {
     font-weight: bolder;
     font-size: 25px;
 }
