@@ -8,7 +8,8 @@
     let score = JSON.parse(localStorage.getItem('localStorageScore')) ||
     {
         userWins: 0,
-        computerWins: 0
+        computerWins: 0,
+        draws: 0
     }
 
     const saveLocalStorage = () => {
@@ -17,12 +18,12 @@
 
     const printResult = (userPickParameter = '...', computerPickParameter = '...', resultParameter = 'Have a Pick!') => {
         resultElement.innerHTML =
-            `<p>You picked: ${userPickParameter}</p>
-             Computer picked: ${computerPickParameter}
+            `You <img src="images/${userPickParameter}-emoji.png" class="resultImage">
+            <img src="images/${computerPickParameter}-emoji.png" class="resultImage" > Computer
              <p class="winLostParagraph">${resultParameter.toUpperCase()}<p>
-             <p class="scoreHeader">Score:</p> 
-             You: ${score.userWins} 
-             <p>Computer: ${score.computerWins}</p>`;
+             Wins: ${score.userWins} 
+             , Losses: ${score.computerWins}
+             , Draws: ${score.draws}`;
     }
 
     const generateComputerChoice = () => {
@@ -37,29 +38,42 @@
     }
 
     const playGame = (userChoiceParameter) => {
+
+
         let resultText = "";
         const computerChoice = generateComputerChoice();
+        resetButton.removeAttribute("hidden");
 
-        if (userChoiceParameter === computerChoice) resultText = "Draw!"
-        else {
-            if (userChoiceParameter === "rock") (computerChoice === "paper") ? resultText = "You lost!" : resultText = "You win!";
-            if (userChoiceParameter === "paper") (computerChoice === "rock") ? resultText = "You win!" : resultText = "You lost!";
-            if (userChoiceParameter === "scissors") (computerChoice === "paper") ? resultText = "You win!" : resultText = "You lost!";
+        if (userChoiceParameter === computerChoice) {
+            resultText = "Draw"
+            score.draws += 1;
+        } else {
+            if (userChoiceParameter === "rock") (computerChoice === "paper") ? resultText = "You Lost" : resultText = "You win";
+            if (userChoiceParameter === "paper") (computerChoice === "rock") ? resultText = "You Win" : resultText = "You Lost";
+            if (userChoiceParameter === "scissors") (computerChoice === "paper") ? resultText = "You Win" : resultText = "You Lost";
         }
-        if (resultText !== "Draw!") {
-            if (resultText === 'You win!') score.userWins += 1
+
+        if (resultText !== "Draw") {
+            if (resultText === 'You Win') score.userWins += 1
             else score.computerWins += 1;
         }
 
-        saveLocalStorage();
-
         printResult(userChoiceParameter, computerChoice, resultText);
+        saveLocalStorage();
     }
 
     const setReset = () => {
         score.userWins = 0;
         score.computerWins = 0;
-        printResult('...', '...');
+        score.draws = 0;
+
+        resultElement.innerHTML =
+            `<p class="winLostParagraph">Have a Pick!<p>
+        Wins: ${score.userWins} 
+        , Losses: ${score.computerWins}
+        , Draws: ${score.draws}`;
+
+        resetButton.setAttribute("hidden", "hidden");
         localStorage.removeItem('localStorageScore');
     }
 
@@ -72,7 +86,6 @@
     }
 
     const init = () => {
-        printResult();
         userButtonClick();
     }
 
